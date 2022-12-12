@@ -1,0 +1,37 @@
+TITLE: pizza experiment cheap vs not expensive on intent via qual & price;
+DATA: 
+file =  '4_data.dat';
+
+VARIABLE:
+names = id compflag freq ref target qual intent d_cheap;
+!ref = reference price, intent = intention, 
+!target = expected price, qual = expected quality
+!d_cheap = cheap vs. not expensive;
+idvar = id;
+missing = all(-99);
+useobs = (compflag EQ 1);
+usevar = intent qual d_cheap target ref;
+
+ANALYSIS: 
+type is general;
+BOOTSTRAP = 1000;
+
+OUTPUT: CINTERVAL(bootstrap);
+PLOT: type is plot2;
+
+DEFINE:
+STANDARDIZE (intent qual target);
+
+MODEL:
+target on    d_cheap ref;
+qual on      d_cheap ref target;
+
+intent on  d_cheap ref target qual;
+
+model indirect:
+qual ind target d_cheap;
+intent ind qual target d_cheap;
+intent ind target d_cheap;
+intent ind qual d_cheap;
+intent ind d_cheap;
+
