@@ -3,3 +3,6 @@ sketchpad.R
 test.txt
 thesis_analysis.Rproj
 .Rhistory
+.Rproj.user*
+data/input/other_experiments/*
+**.pdf
