@@ -2,7 +2,7 @@
 # TITLE: pizza experiment cheap vs not expensive on intent via qual & price;
 # DATA: 
 # file =  '4_data.dat';
-dpath = "data/input/4_data.dat"
+dpath = "data/4_data.dat"
 data = read.table(dpath)
 # VARIABLE:
 #   names = id compflag freq ref target qual intent d_cheap;

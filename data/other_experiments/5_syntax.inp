@@ -1,0 +1,32 @@
+TITLE: (not)cheap (not)expensive experiment music data;
+DATA:
+file= '5_data.dat';
+
+VARIABLE:
+names =  condwine ref p;
+GROUPING = condwine (
+1	=buyexpensive
+2	=getexpensive
+3	=buynotexpensive
+4	=getnotexpensive
+5	=buycheap
+6	=getcheap
+7	=buynotcheap
+8	=getnotcheap);
+
+usevar = ref p;
+
+DEFINE: CENTER ref (grand);
+
+MODEL:
+p on ref;
+
+MODEL buycheap:         [p](a1); 
+MODEL buynotexpensive:  [p](a2); 
+MODEL buynotcheap:      [p](a3); 
+Model buyexpensive:     [p](a4); 
+
+MODEL getcheap:         [p](b1); 
+MODEL getnotexpensive:  [p](b2); 
+MODEL getnotcheap:      [p](b3); 
+Model getexpensive:     [p](b4); 

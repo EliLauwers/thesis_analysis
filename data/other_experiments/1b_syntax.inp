@@ -1,0 +1,18 @@
+TITLE: (not)cheap (not)expensive experiment Study b gmi music data;
+DATA:
+file= '1b_data.dat';
+VARIABLE:
+names = cond ref p;
+GROUPING = cond (1=expensive 2=notexpensive 3=inexpensive 5=cheap 6=notcheap);
+usevar = ref p;
+DEFINE: center ref (GRAND);
+MODEL:
+p on ref;
+
+Model cheap:        [p](m1);
+Model notexpensive: [p](m2);
+Model notcheap:     [p](m3);
+Model expensive:    [p](m3);
+
+
+MODEL inexpensive:[p];

@@ -1,0 +1,23 @@
+TITLE: (not)cheap (not)expensive experiment Study b gmi music data;
+DATA: file= '1a_data.dat';
+VARIABLE:
+names = cond CDref CD MP3ref MP3 unlref unl preref pre;
+!condition, CD (reference) price, MP3 (reference) price, 
+!Spotify unlimited (reference) price, Spotify Premium (reference) price;
+missing = all(-99);
+USEVAR = CD MP3 unl pre CDref MP3ref unlref preref;
+GROUPING = cond (1=expensive 2=notexpensive 3=cheap 4=notcheap);
+
+!ANALYSIS: iterations = 100000;
+DEFINE: CENTER CDref MP3ref unlref preref (GRAND);
+MODEL:
+CD MP3 unl pre on CDref MP3ref unlref preref;
+
+CD MP3 unl pre with CD MP3 unl pre;
+
+model cheap:        [CD MP3 unl pre](am1 bm1 cm1 dm1);
+model notexpensive: [CD MP3 unl pre](am2 bm2 cm2 dm2);
+model notcheap:     [CD MP3 unl pre](am3 bm3 cm3 dm3);
+model expensive:    [CD MP3 unl pre](am3 bm3 cm3 dm3);
+
+

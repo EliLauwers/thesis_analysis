@@ -1,7 +1,0 @@
-BOOTSTRAP:
-  N_DATASET: null
-  N_BOOT: 2500
-
-steps:
-  create_bootstrap: false
-  effect_estimation: false

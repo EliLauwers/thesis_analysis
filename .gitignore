@@ -6,3 +6,4 @@ thesis_analysis.Rproj
 .Rproj.user*
 data/input/other_experiments/*
 **.pdf
+.Rproj.user
