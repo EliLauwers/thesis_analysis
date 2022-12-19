@@ -11,7 +11,7 @@ sample_potentials <- function(k, models, data){
   for (x in c(0, 1)) {
     nu_1 = predict(models$M1,
                    mutate(data, X = x))
-    dataset_label = glue::glue("M1_{x}")
+    dataset_label = glue("M1_{x}")
     data[dataset_label] = rnorm(
       n = nrow(data),
       mean = nu_1 + V_i,
@@ -27,8 +27,8 @@ sample_potentials <- function(k, models, data){
       nu_2 = predict(models$M2_seq,
                      mutate(data,
                             X = x,
-                            M1 = data[[glue::glue("M1_{xp}")]]))
-      dataset_label = glue::glue("M2_{x}_M1_{xp}")
+                            M1 = data[[glue("M1_{xp}")]]))
+      dataset_label = glue("M2_{x}_M1_{xp}")
       data[dataset_label] = rnorm(n = nrow(data),
                                   mean = nu_2,
                                   sd = sigma_sq_hat[2])
@@ -46,11 +46,11 @@ sample_potentials <- function(k, models, data){
                          mutate(
                            data,
                            X = x,
-                           M1 = data[[glue::glue("M1_{xp}")]],
-                           M2 = data[[glue::glue("M2_{xpp}_M1_{xppp}")]]
+                           M1 = data[[glue("M1_{xp}")]],
+                           M2 = data[[glue("M2_{xpp}_M1_{xppp}")]]
                          ))
           
-          dataset_label = glue::glue("Y_{x}_M1_{xp}_M2_{xpp}_M1_{xppp}")
+          dataset_label = glue("Y_{x}_M1_{xp}_M2_{xpp}_M1_{xppp}")
           data[dataset_label] = rnorm(n = nrow(data),
                                       mean = nu_3,
                                       sd = sigma_sq_hat[3])

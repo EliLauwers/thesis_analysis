@@ -71,8 +71,8 @@ natural_effect <- function(data, models, left_po, right_po) {
                    # the estimated models is fitted based on the M columns,
                    # so, the M columns are interchanged with the columns denoting
                    # the potential mediator values
-                   M1 = data[[glue::glue("M1_{left_po[2]}")]],
-                   M2 = data[[glue::glue("M2_{left_po[3]}_M1_{left_po[4]}")]]
+                   M1 = data[[glue("M1_{left_po[2]}")]],
+                   M2 = data[[glue("M2_{left_po[3]}_M1_{left_po[4]}")]]
                  ))
   
   
@@ -80,8 +80,8 @@ natural_effect <- function(data, models, left_po, right_po) {
                   mutate(
                     data,
                     X = right_po[1],
-                    M1 = data[[glue::glue("M1_{right_po[2]}")]],
-                    M2 = data[[glue::glue("M2_{right_po[3]}_M1_{right_po[4]}")]]
+                    M1 = data[[glue("M1_{right_po[2]}")]],
+                    M2 = data[[glue("M2_{right_po[3]}_M1_{right_po[4]}")]]
                   ))
   return(mean(left - right))
 }
@@ -98,7 +98,7 @@ summary_natural_effects <- function(effects) {
   summaries = lapply(naturals, function(natural) {
     # first, get a vector of the indices where the relevant effects in the 
     # effect list reside.
-    inds = str_starts(names(effects), glue::glue("{natural}-"))
+    inds = str_starts(names(effects), glue("{natural}-"))
     # for the relevant indices, get the subset of relevant indices which
     # denote level 1 and 3 effects.
     levels_1_3 = str_ends(names(effects)[inds], c("000", "111"))

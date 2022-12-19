@@ -65,8 +65,8 @@ boot_inds = lapply(1:BOOTS_NDATASETS, function(x) {
              size = BOOTS_NOBS,
              replace = TRUE)
 })
-# For testing purposes, we do a 'bootstrap' using the proper dataset for 100 iterations
-repeat_nrow = 100
+# For testing purposes, we do a 'bootstrap' using the original dataset, identically copied for 10 iterations
+repeat_nrow = 10
 boot_inds = lapply(1:repeat_nrow, function(x)
   1:nrow(data))
 
@@ -163,7 +163,7 @@ results = lapply(K_VECTOR, function(k, boot_inds, models, data) {
     # To do this, use the list of natural effect definitions
     results_boot = lapply(nat_defs, function(def) {
       potential_outcomes = sapply(def[c("left_po", "right_po")], function(po) {
-        glue::glue("Y_{po[1]}_M1_{po[2]}_M2_{po[3]}_M1_{po[4]}")
+        glue("Y_{po[1]}_M1_{po[2]}_M2_{po[3]}_M1_{po[4]}")
       })
       mean(tmp[[potential_outcomes[1]]] -
              tmp[[potential_outcomes[2]]])

@@ -5,9 +5,9 @@
 #' @param right_po the right potential outcome in the contrast (e.g.: c(0, 0, 0, 0))
 #' @return None
 print_natural_effect <- function(label, left_po, right_po){
-  lpo = glue::glue("Y({left_po[1]}, M1({left_po[2]}), M2({left_po[3]}, M1({left_po[4]}))")
-  rpo = glue::glue("Y({right_po[1]}, M1({right_po[2]}), M2({right_po[3]}, M1({right_po[4]}))")
-  cat(glue::glue("{label}\tE[{lpo} - {rpo}]"), "\n")
+  lpo = glue("Y({left_po[1]}, M1({left_po[2]}), M2({left_po[3]}, M1({left_po[4]}))")
+  rpo = glue("Y({right_po[1]}, M1({right_po[2]}), M2({right_po[3]}, M1({right_po[4]}))")
+  cat(glue("{label}\tE[{lpo} - {rpo}]"), "\n")
 }
 
 
@@ -31,7 +31,7 @@ natural_defs<- function(){
       comb = unname(combinations[j,]) # a vector with 3 elements like c(0, 1, 1)
       # the label is equal to the elements in the comb vector
       # e.g.: c(0, 0, 0) -> "000"
-      effect[["label"]] = glue::glue("{naturals[i]}-{paste(comb, collapse = '')}")
+      effect[["label"]] = glue("{naturals[i]}-{paste(comb, collapse = '')}")
       # Next, based on what natural effect type is calculated, an extra element is added
       # For example: for the NDE-000,
       # - The combination coming from combinations dataframe is c(0, 0, 0)
@@ -74,7 +74,7 @@ MS1_defs <- function(){
       left_po = unlist(append(comb, 1, after = i - 1))
       right_po = unlist(append(comb, 0, after = i - 1))
       # for the MS1, the last argument of th PO is equal to the third argument
-      effect[["label"]] = glue::glue("MS1-{mediator_specifics[i]}-{paste(comb, collapse = '')}")
+      effect[["label"]] = glue("MS1-{mediator_specifics[i]}-{paste(comb, collapse = '')}")
       left_po[4] = left_po[3]
       right_po[4] = right_po[3]
       effect[["left_po"]] = left_po
@@ -107,7 +107,7 @@ MS2_defs <- function(){
       right_po = unlist(append(comb, 0, after = i - 1))
       
       # for the MS1, the last argument of th PO is equal to the third argument
-      effect[["label"]] = glue::glue("MS2-{mediator_specifics[i]}-{paste(comb, collapse = '')}")
+      effect[["label"]] = glue("MS2-{mediator_specifics[i]}-{paste(comb, collapse = '')}")
       left_po[4] = left_po[2]
       right_po[4] = right_po[2]
       effect[["left_po"]] = left_po
